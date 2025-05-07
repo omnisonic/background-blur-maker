@@ -121,17 +121,18 @@ document.addEventListener('DOMContentLoaded', function() {
         styleSheet.insertRule(`body::before {
           content: "";
           position: fixed;
-          top: -10%;
-          left: -10%;
-          width: 120%;
-          height: 120%;
-          background-size: cover;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-size: 100vw 100vh;
           background-position: center;
           background-repeat: no-repeat;
           background-attachment: fixed;
           z-index: -1;
           background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${imageUrl}");
           filter: blur(5px);
+          transform: scale(1.1);
         }`, styleSheet.cssRules.length);
 
         // Remove these two lines that were hiding the elements
@@ -188,16 +189,18 @@ document.addEventListener('DOMContentLoaded', function() {
   // Size slider
   const sizeSlider = document.querySelector('.size-slider');
   sizeSlider.addEventListener('input', function(event) {
-    const size = event.target.value;
+    const size = parseInt(event.target.value);
     const img = document.querySelector('.foreground-image');
     
-    // Only set width, let height scale proportionally
-    if (window.innerWidth <= 600) {
-      img.style.width = Math.min(size, window.innerWidth * 0.85) + 'px';
-      img.style.height = 'auto';
-    } else {
-      img.style.height = size + 'px';
-      img.style.width = 'auto';
+    if (img.src) {
+      if (window.innerWidth <= 600) {
+        const maxWidth = Math.min(size, window.innerWidth * 0.85);
+        img.style.width = `${maxWidth}px`;
+        img.style.height = 'auto';
+      } else {
+        img.style.height = `${size}px`;
+        img.style.width = 'auto';
+      }
     }
   });
 

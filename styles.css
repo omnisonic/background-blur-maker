@@ -15,17 +15,18 @@ body {
 body::before {
   content: "";
   position: fixed;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  background-size: cover;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: 100vw 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   z-index: -1;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("static/images/guitar_bg2.webp");
   filter: blur(5px);
+  transform: scale(1.1);
 }
 
 .foreground-image {
@@ -33,7 +34,7 @@ body::before {
   z-index: 1;
   border-radius: 10px;
   max-width: 90vw;
-  height: auto !important; /* Override inline height */
+  height: 720px;
   width: auto;
   max-height: 80vh;
   object-fit: contain;
@@ -105,7 +106,7 @@ body::before {
   top: 20px;
   right: 20px;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 8px;

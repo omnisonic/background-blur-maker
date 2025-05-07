@@ -59,7 +59,7 @@ document.addEventListener('keydown', function(event) {
   } else if (event.code === 'Space') {
     event.preventDefault();
     const menu = document.querySelector('.menu-container');
-    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    menu.style.display = menu.style.display === 'none' ? 'grid' : 'none';
   }
 });
 

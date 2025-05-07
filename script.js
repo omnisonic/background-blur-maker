@@ -48,6 +48,14 @@ function getCurrentBackgroundImage() {
   return '';
 }
 
+let lastTap = 0;
+const DOUBLE_TAP_DELAY = 300; // milliseconds
+
+function toggleMenu() {
+  const menu = document.querySelector('.menu-container');
+  menu.style.display = menu.style.display === 'none' ? 'grid' : 'none';
+}
+
 // Event Listeners
 document.addEventListener('keydown', function(event) {
   if (event.key === 'ArrowRight') {
@@ -58,13 +66,29 @@ document.addEventListener('keydown', function(event) {
     updateImage();
   } else if (event.code === 'Space') {
     event.preventDefault();
-    const menu = document.querySelector('.menu-container');
-    menu.style.display = menu.style.display === 'none' ? 'grid' : 'none';
+    toggleMenu();
   }
+});
+
+// Add touch event handlers
+document.addEventListener('touchend', function(event) {
+  const currentTime = new Date().getTime();
+  const tapLength = currentTime - lastTap;
+  
+  if (tapLength < DOUBLE_TAP_DELAY && tapLength > 0) {
+    event.preventDefault();
+    toggleMenu();
+  }
+  lastTap = currentTime;
 });
 
 // Initialize all event listeners when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+  // Prevent default double-tap zoom on mobile
+  document.addEventListener('dblclick', function(e) {
+    e.preventDefault();
+  });
+  
   document.getElementById('chooseBgButton').addEventListener('click', function() {
     document.getElementById('bgImageInput').click();
   });
@@ -165,7 +189,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const sizeSlider = document.querySelector('.size-slider');
   sizeSlider.addEventListener('input', function(event) {
     const size = event.target.value;
-    document.querySelector('.foreground-image').height = size;
+    const img = document.querySelector('.foreground-image');
+    
+    // Only set width, let height scale proportionally
+    if (window.innerWidth <= 600) {
+      img.style.width = Math.min(size, window.innerWidth * 0.85) + 'px';
+      img.style.height = 'auto';
+    } else {
+      img.style.height = size + 'px';
+      img.style.width = 'auto';
+    }
   });
 
   // Add drag and drop handlers

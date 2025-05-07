@@ -32,6 +32,11 @@ body::before {
   position: relative;
   z-index: 1;
   border-radius: 10px;
+  max-width: 90vw;
+  height: auto !important; /* Override inline height */
+  width: auto;
+  max-height: 80vh;
+  object-fit: contain;
 }
 
 .blur-slider-container {
@@ -176,10 +181,13 @@ input[type="range"], select {
 
 @media (max-width: 600px) {
   .menu-container {
-    top: 10px;
-    right: 10px;
-    padding: 15px;
+    top: 5px;
+    right: 5px;
+    left: 5px;
+    width: auto;
+    padding: 10px;
     grid-template-columns: 1fr;
+    max-height: 95vh;
   }
 
   .instructions {
@@ -187,21 +195,44 @@ input[type="range"], select {
     border-right: none;
     border-bottom: 1px solid #ccc;
     padding-right: 0;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  .instructions p, .instructions li {
+    font-size: 14px;
+    margin: 5px 0;
   }
 
   .controls-wrapper {
     grid-column: 1;
+    gap: 10px;
+  }
+
+  .controls {
+    gap: 8px;
+  }
+
+  .slider-group {
+    gap: 3px;
   }
 
   .slider-group label {
-    font-size: clamp(11px, 2vw, 14px);
+    font-size: 13px;
   }
 
   #chooseBgButton, #chooseFgButton {
-    padding: 6px;
-    font-size: clamp(11px, 2vw, 14px);
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .foreground-image {
+    max-width: 85vw;
+    max-height: 70vh;
+  }
+
+  .size-slider {
+    max-width: 200px;
   }
 }
 
@@ -212,5 +243,20 @@ input[type="range"], select {
 
   .buttons-container {
     flex-direction: column;
+    gap: 5px;
+  }
+
+  .menu-container {
+    font-size: 13px;
+  }
+
+  .instructions h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .instructions ul, .instructions ol {
+    padding-left: 15px;
+    margin: 5px 0;
   }
 }

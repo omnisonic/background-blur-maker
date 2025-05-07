@@ -125,12 +125,12 @@ document.addEventListener('DOMContentLoaded', function() {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-size: 100vw 100vh;
+          z-index: -1;
+          background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${imageUrl}");
+          background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
           background-attachment: fixed;
-          z-index: -1;
-          background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${imageUrl}");
           filter: blur(5px);
           transform: scale(1.1);
         }`, styleSheet.cssRules.length);

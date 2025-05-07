@@ -1,0 +1,216 @@
+body {
+  background: none;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -1;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("static/images/guitar_bg2.webp");
+  filter: blur(5px);
+}
+
+.foreground-image {
+  position: relative;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.blur-slider-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.slider-group {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.slider-group label {
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.blur-slider, .opacity-slider, .size-slider {
+  -webkit-appearance: none;
+  width: 100px;
+  height: 5px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  margin-top: 10px;
+}
+
+.blur-slider::-webkit-slider-thumb,
+.opacity-slider::-webkit-slider-thumb,
+.size-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #333;
+  cursor: pointer;
+}
+
+.blur-slider::-moz-range-thumb,
+.opacity-slider::-moz-range-thumb,
+.size-slider::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #333;
+  cursor: pointer;
+}
+
+.blur-effect-select {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.menu-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  width: min(800px, 90vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.instructions {
+  grid-column: 1;
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.instructions h3 {
+  margin-top: 0;
+  font-size: clamp(14px, 3vw, 18px);
+}
+
+.instructions ul {
+  padding-left: 15px;
+}
+
+.instructions ol {
+  padding-left: 20px;
+}
+
+#chooseBgButton {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 8px;
+}
+
+.buttons-container {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.controls-wrapper {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.slider-group label {
+  font-weight: bold;
+}
+
+input[type="range"], select {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .menu-container {
+    top: 10px;
+    right: 10px;
+    padding: 15px;
+    grid-template-columns: 1fr;
+  }
+
+  .instructions {
+    grid-column: 1;
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding-right: 0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+  }
+
+  .controls-wrapper {
+    grid-column: 1;
+  }
+
+  .slider-group label {
+    font-size: clamp(11px, 2vw, 14px);
+  }
+
+  #chooseBgButton, #chooseFgButton {
+    padding: 6px;
+    font-size: clamp(11px, 2vw, 14px);
+  }
+}
+
+@media (max-width: 500px) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+
+  .buttons-container {
+    flex-direction: column;
+  }
+}

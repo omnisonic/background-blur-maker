@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <input type="file" id="bgImageInput" accept="image/*" style="display: none;">
+  <input type="file" id="fgImageInput" accept="image/*" multiple style="display: none;">
+  <div class="menu-container">
+    <div class="instructions">
+      <h3>Instructions:</h3>
+      <p>Press SPACE to toggle this menu</p>
+      <p>To load images:</p>
+      <ol>
+        <li>Click "Choose Background Image" to set the blurred background</li>
+        <li>Drag and drop your foreground image(s) onto the page</li>
+        <li>Use the sliders to adjust blur, opacity, and size to your desired effect</li>
+        <li>Use LEFT and RIGHT arrow keys to cycle through dropped images</li>
+        <li>Take a screenshot:
+          <ul>
+            <li>Firefox: Right-click and select "Take Screenshots"</li>
+            <li>Mac: Press Command (⌘) + Shift + 4</li>
+            <li>Windows: Press Windows + Shift + S</li>
+            <li>Linux: Press PrtScn or use Screenshot tool</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div class="controls-wrapper">
+      <div class="buttons-container">
+        <button id="chooseBgButton">Choose Background Image</button>
+        <button id="chooseFgButton">Choose Foreground Image(s)</button>
+      </div>
+      <div class="controls">
+        <div class="slider-group">
+          <label for="blurEffect">Effect Type:</label>
+          <select id="blurEffect" class="blur-effect-select">
+            <option value="blur">Normal Blur</option>
+            <option value="blur-bright">Blur + Brightness</option>
+            <option value="blur-contrast">Blur + Contrast</option>
+            <option value="blur-saturate">Blur + Saturation</option>
+          </select>
+        </div>
+        
+        <div class="slider-group">
+          <label for="blurSlider">Blur Amount:</label>
+          <input type="range" min="0" max="50" value="5" class="blur-slider" id="blurSlider">
+        </div>
+
+        <div class="slider-group">
+          <label for="opacitySlider">Overlay Opacity:</label>
+          <input type="range" min="0" max="80" value="50" class="opacity-slider" id="opacitySlider">
+        </div>
+
+        <div class="slider-group">
+          <label for="sizeSlider">Image Size:</label>
+          <input type="range" min="200" max="1200" value="720" class="size-slider" id="sizeSlider">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img class="foreground-image" src="" alt="Foreground Image" height="720" draggable="true"/>
+
+  <script src="script.js"></script>
+</body>
+</html>
